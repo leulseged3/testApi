@@ -5,9 +5,9 @@ import { Book } from '../entities/book.entity';
 const router = Router();
 const bookService = new BookService();
 
-router.get('/books', async (req, res) => {
+router.get('/books/:page', async (req, res) => {
   try {
-    const books = await bookService.getBooks();
+    const books = await bookService.getBooks(Number(req.params.page), 10);
     res.json(books);
   } catch (error) {
     console.error('Error retrieving books:', error);

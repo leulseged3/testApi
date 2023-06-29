@@ -4,8 +4,12 @@ import { Book } from '../entities/book.entity';
 export class BookService {
   private bookRepository = AppDataSource.getRepository(Book);
 
-  async getBooks() {
-    return await this.bookRepository.find();
+  async getBooks(page: number, pageSize: number) {
+    const skip = (page - 1)* pageSize;
+    const take = pageSize;
+
+    const [books, total] = await this.bookRepository.findAndCount({ skip, take });
+    return {books, total, currentPage: page};
   }
 
   async getBook(id: number) {
