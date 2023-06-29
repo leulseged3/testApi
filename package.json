@@ -6,7 +6,7 @@
 "scripts": {
   "start": "ts-node src/index.ts",
   "dev": "nodemon --watch src --exec ts-node src/index.ts",
-  "build": "tsc"
+  "build": "yarn && tsc"
 },
   "dependencies": {
     "dotenv": "^16.3.1",
