@@ -7,4 +7,8 @@ export class BookService {
   async getBooks() {
     return await this.bookRepository.find();
   }
+
+  async getBook(id: number) {
+    return await this.bookRepository.findOne({ where : { id }})
+  }
 }

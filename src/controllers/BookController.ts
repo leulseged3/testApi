@@ -14,4 +14,14 @@ router.get('/books', async (req, res) => {
   }
 });
 
+router.get('/book/:id', async (req, res) => {
+  try {
+    const books = await bookService.getBook(Number(req.params.id));
+    res.json(books);
+  } catch (error) {
+    console.error('Error retrieving books:', error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+});
+
 export default router;
